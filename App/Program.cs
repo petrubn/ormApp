@@ -6,6 +6,12 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
+            /*
+             * Switch
+             * n menu
+             */
+
+            /* Create new entries */
             
             using (var db = new DatabaseContext())
             {
@@ -20,6 +26,7 @@ namespace HelloWorld
                 db.Products.Add(product);
                 db.SaveChanges();
 
+                Console.WriteLine("\n");                
                 foreach(var p in db.Products) 
                 {
                     Console.WriteLine("{0} {1} {2}", p.ProductId, p.Description, p.Price);
@@ -28,14 +35,18 @@ namespace HelloWorld
             }
            
             
+            /* Tables show*/
+            
             using (var db = new DatabaseContext())
             {
-                var orders = db.Orders;
-                foreach(var order in orders)
+                
+                foreach(var p in db.Products) 
                 {
-                    Console.WriteLine("Order: order.Created");
+                    Console.WriteLine("(id) {0} \t (name) {1} \t (price) {2} \t", p.ProductId, p.Description, p.Price);
                 }
+                
             }
+
         }
 
     }
